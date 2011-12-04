@@ -1,5 +1,5 @@
 class Bot{
-  float xpos,ypos, angle, speed;
+  float xpos,ypos, angle, speed, mscale;
 
   //constructor
   Bot(float xpos_, float ypos_, float angle_){
@@ -7,19 +7,20 @@ class Bot{
     ypos = ypos_;
     angle = angle_; 
     speed = 1;   
+    mscale = random(0.2,1);
     
   }
   
   void render(){
-//    pushMatrix(); 
-        
+    pushMatrix(); 
+    scale(mscale);    
     translate(xpos, ypos);  
     rotate(angle);
     run(); 
   
 //    println("P = (" +  xpos + "," +  ypos +")");    
     drawBot();
-//    popMatrix();
+    popMatrix();
   }
   
   void run(){
@@ -38,12 +39,11 @@ class Bot{
     }
     
     if( r<0.05){
-      println("r = " +r);
+      //println("r = " +r);
       angle = angle + PI/4;  
       getSpeed();
-      println("a = " + angle+ " degrees(angle) "+ degrees(angle) + "("+ (-cos(angle)) + "," + sin(angle) + ")");
-    } 
-    
+      //println("a = " + angle+ " degrees(angle) "+ degrees(angle) + "("+ (-cos(angle)) + "," + sin(angle) + ")");
+    }     
   }
   
   void getSpeed(){
@@ -51,13 +51,38 @@ class Bot{
   }
   
   void drawBot(){
-    fill(255);
+    //Body
+    fill(255,0,0);
     stroke(0);
-    strokeWeight(2);
-    
+    strokeWeight(2);    
     ellipse(0,0,15,20);
-    fill(0);
-    ellipse(0,10,7,7);
-  }
+    
+    noStroke();    
 
+    //spots
+    fill(0);
+    ellipse(-3, 2, 4, 4);
+    ellipse(3, 2, 4, 4);
+    ellipse(-2, -5, 3, 3);
+    ellipse(2, -5, 3, 3);
+   
+    //Head
+    fill(0);
+    ellipse(0,10,10,10);
+    
+    stroke(0);
+    strokeWeight(0);
+    
+    pushMatrix();
+    translate(-3,15);
+    rotate(PI/6);
+    line(0,0,0,5);
+    popMatrix();
+    
+    pushMatrix();
+    translate(3,15);
+    rotate(-PI/6);
+    line(0,0,0,5);
+    popMatrix();
+  }
 }

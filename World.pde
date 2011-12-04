@@ -1,13 +1,20 @@
 class World{
   //time elapsed
-  
+  ArrayList bots;
   World(){
-    b = new Bot(200,200,0);  
+    bots = new ArrayList();
+    for(int i = 0 ; i<20 ; i++){
+      bots.add(new Bot(200,200,0) );
+    }
   }
   
   void render(){
     drawBackground();
-    b.render();
+    
+    for(int i = 0 ; i < bots.size() ; i++){
+      Bot b = (Bot) bots.get(i);
+      b.render();
+    }
   }
   
   void drawBackground(){
