@@ -3,11 +3,13 @@ class Bot{
 
   //constructor
   Bot(float xpos_, float ypos_, float angle_){
-    xpos = xpos_;
-    ypos = ypos_;
-    angle = angle_; 
+    
     speed = 1;   
-    mscale = random(0.2,1);
+    mscale = random(0.2,1);    
+    xpos =  xpos_;
+    ypos =  ypos_;
+    angle = angle_; 
+    
     
   }
   
@@ -33,7 +35,7 @@ class Bot{
     float r = random(1);
   
     //Invert if collision with wall
-    if(xpos < 0 || xpos > width || ypos < 0 || ypos > width){
+    if(xpos < 0 || xpos > width || ypos < 0 || ypos > height){
       angle = angle + PI;      
       return;
     }
@@ -74,13 +76,13 @@ class Bot{
     strokeWeight(0);
     
     pushMatrix();
-    translate(-3,15);
+    translate(-3,13);
     rotate(PI/6);
     line(0,0,0,5);
     popMatrix();
     
     pushMatrix();
-    translate(3,15);
+    translate(3,13);
     rotate(-PI/6);
     line(0,0,0,5);
     popMatrix();

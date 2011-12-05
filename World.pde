@@ -3,8 +3,8 @@ class World{
   ArrayList bots;
   World(){
     bots = new ArrayList();
-    for(int i = 0 ; i<20 ; i++){
-      bots.add(new Bot(200,200,0) );
+    for(int i = 0 ; i<50 ; i++){
+      bots.add(new Bot(width/2,height/2,random(2*PI)) );
     }
   }
   
