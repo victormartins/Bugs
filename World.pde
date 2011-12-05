@@ -1,11 +1,16 @@
 class World{
   //time elapsed
   ArrayList bots;
+  Entity[][] matrix;
+  
   World(){
+    matrix = new Entity[width][height]; //All entities in the world    
     bots = new ArrayList();
     for(int i = 0 ; i<50 ; i++){
-      bots.add(new Bot(width/2,height/2,random(2*PI)) );
-    }
+      Bot b = new LadyBug(getValidPosition(),random(2*PI));
+      bots.add(b);
+      matrix[int(b.position.x)][int(b.position.y)] = b;
+    }    
   }
   
   void render(){
@@ -30,6 +35,24 @@ class World{
         }        
       }
     }      
+  }
+  
+  PVector getValidPosition(){
+    PVector p = new PVector();
+    while(p == null || ! isPositionFree(p)){
+      p = generateRandomVector();
+    }
+    println("Inserted Entity in ("+p.x+","+p.y+")");
+    return p;
+  }
+  
+  PVector generateRandomVector(){
+      PVector p =  new PVector(int(random(width)), int(random(height)));      
+      return p;
+  }
+  
+  boolean isPositionFree(PVector p){
+    return (matrix[int(p.x)][int(p.y)] == null);
   }
   
 }

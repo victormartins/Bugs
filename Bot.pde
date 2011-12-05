@@ -1,22 +1,20 @@
-class Bot{
-  float xpos,ypos, angle, speed, mscale;
+class Bot extends Entity {
+  float angle, speed, mscale;
 
   //constructor
-  Bot(float xpos_, float ypos_, float angle_){
+  Bot(PVector position_, float angle_){
     
     speed = 1;   
     mscale = random(0.2,1);    
-    xpos =  xpos_;
-    ypos =  ypos_;
-    angle = angle_; 
-    
-    
+    position.x =  position_.x;
+    position.y =  position_.y;
+    angle = angle_;         
   }
   
   void render(){
     pushMatrix(); 
     scale(mscale);    
-    translate(xpos, ypos);  
+    translate(position.x, position.y);  
     rotate(angle);
     run(); 
   
@@ -27,15 +25,15 @@ class Bot{
   
   void run(){
     getDirection();
-    xpos = xpos-sin(angle) * speed;
-    ypos = ypos+cos(angle) * speed;    
+    position.x = int(position.x-sin(angle) * speed);
+    position.y = int(position.y+cos(angle) * speed);    
   }
   
   void getDirection(){
     float r = random(1);
   
     //Invert if collision with wall
-    if(xpos < 0 || xpos > width || ypos < 0 || ypos > height){
+    if(position.x < 0 || position.x > width || position.y < 0 || position.y > height){
       angle = angle + PI;      
       return;
     }
@@ -57,34 +55,6 @@ class Bot{
     fill(255,0,0);
     stroke(0);
     strokeWeight(2);    
-    ellipse(0,0,15,20);
-    
-    noStroke();    
-
-    //spots
-    fill(0);
-    ellipse(-3, 2, 4, 4);
-    ellipse(3, 2, 4, 4);
-    ellipse(-2, -5, 3, 3);
-    ellipse(2, -5, 3, 3);
-   
-    //Head
-    fill(0);
-    ellipse(0,10,10,10);
-    
-    stroke(0);
-    strokeWeight(0);
-    
-    pushMatrix();
-    translate(-3,13);
-    rotate(PI/6);
-    line(0,0,0,5);
-    popMatrix();
-    
-    pushMatrix();
-    translate(3,13);
-    rotate(-PI/6);
-    line(0,0,0,5);
-    popMatrix();
+    ellipse(0,0,20,20);        
   }
 }
