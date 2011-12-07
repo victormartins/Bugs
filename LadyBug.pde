@@ -1,10 +1,7 @@
 class LadyBug extends Bot{
   LadyBug(PVector position_, float angle_){
     super(position_, angle_);
-  }
-  
-  
-  
+  }      
   
  void drawBot(){
     //Body

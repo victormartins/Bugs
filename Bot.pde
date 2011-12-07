@@ -38,7 +38,7 @@ class Bot extends Entity {
       return;
     }
     
-    if( r<0.05){
+    if( r<behavior.scout){
       //println("r = " +r);
       angle = angle + PI/4;  
       getSpeed();
